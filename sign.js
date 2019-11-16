@@ -146,7 +146,7 @@ const printCart=(a)=>{
                         <td><img src=${val.gambarbarang} height='100px'/></td>
                         <td><button onclick="onClickDeleteCart(${index})">GAJADI</button></td>
                     </tr>`
-        // totalbelanja += parseInt(val.hargabarang)
+        totalbelanja += parseInt(val.hargabarang)
         
         
     })
