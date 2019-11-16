@@ -119,7 +119,8 @@ const printBelanjaAdmin=(a)=>{
 
 }
 
-
+var belanjaan=0
+var totalbelanja = 0
 const printCart=(a)=>{
     var printCart=''
     var table = `<thead>
@@ -137,6 +138,7 @@ const printCart=(a)=>{
                  `
     document.getElementsByTagName('table')[1].innerHTML=table
     a.forEach((val,index)=>{
+
         printCart+=`<tr>
                         <td>${index+1}</td>
                         <td>${val.namabarang}</td>
@@ -144,8 +146,12 @@ const printCart=(a)=>{
                         <td><img src=${val.gambarbarang} height='100px'/></td>
                         <td><button onclick="onClickDeleteCart(${index})">GAJADI</button></td>
                     </tr>`
+        // totalbelanja += parseInt(val.hargabarang)
+        
+        
     })
     document.getElementsByTagName('tbody')[1].innerHTML=printCart
+    return console.log(belanjaan)
     
 }
 
@@ -254,6 +260,10 @@ const onClickEditBarang=(a)=>{
 const onClickAddCart=(a)=>{
     dataCart.push(dataBarang[a])
     printCart(dataCart)
+    document.getElementsByTagName('h4')[0].innerHTML=`Total Belanjaan anda ${totalbelanja}`
+    belanjaan+=1
+    console.log(totalbelanja)
+    
 
 }
 
@@ -263,6 +273,14 @@ const onClickDeleteCart=(a)=>{
     if(konfirmasidelete){
         dataCart.splice(a,1)
         printCart(dataCart)
+        belanjaan-=1
+        totalbelanja-=dataCart[a]
+        console.log(belanjaan)
+    }
+    if(belanjaan==0){
+        document.getElementsByTagName('table')[1].innerHTML=``
+        document.getElementsByTagName('h4')[0].innerHTML=`Tidak ada barang Belanjaan`
+        totalbelanja=0
     }
 }
 
@@ -274,6 +292,7 @@ const onClickDelete=(a)=>{
         dataUser.splice(a,1)
         printData(dataUser)
     }
+    
 }
 
 const onClickDeleteAdmin=(a)=>{
