@@ -120,7 +120,7 @@ const printBelanjaAdmin=(a)=>{
 }
 
 var belanjaan=0
-var totalbelanja = 0
+var totalbelanja=0
 const printCart=(a)=>{
     var printCart=''
     var table = `<thead>
@@ -138,7 +138,6 @@ const printCart=(a)=>{
                  `
     document.getElementsByTagName('table')[1].innerHTML=table
     a.forEach((val,index)=>{
-
         printCart+=`<tr>
                         <td>${index+1}</td>
                         <td>${val.namabarang}</td>
@@ -170,8 +169,8 @@ if(dataLogin){
             console.log(dataLogin)
             document.getElementsByTagName('h2')[0].innerHTML = `HALAMAN ADMIN`
             document.getElementsByTagName('div')[0].innerHTML= `<h1>XAMNSO MART</h1>`
-            document.getElementsByTagName('h4')[0].innerHTML= `<button onclick="">Add</button>`
-            document.getElementsByTagName('h4')[1].innerHTML= `<button onclick="">Add</button>`
+            document.getElementsByTagName('h4')[0].innerHTML= `<button onclick="onClickAddDataUser()">Add</button>`
+            document.getElementsByTagName('h4')[1].innerHTML= `<button onclick="onClickAddBarang()">Add</button>`
             document.getElementsByTagName('h5')[0].innerHTML= `<button onclick="onClickLogout()">Logout</button>`
             printData(dataUser)
             printBelanjaAdmin(dataBarang)
@@ -284,6 +283,27 @@ const onClickDeleteCart=(a)=>{
     }
 }
 
+const onClickAddDataUser=()=>{
+    var konfirmasitambahdatauser=confirm(`Yakin mau tambah data user ?`)
+    if(konfirmasitambahdatauser){
+        var tambahdatanama=prompt('nama user baru')
+        var tambahdatapassword=prompt('password user baru')
+        dataUser.push(new User(tambahdatanama,tambahdatapassword))
+        printData(dataUser)
+    }
+}
+
+const onClickAddBarang=()=>{
+    var konfirmasitambahbarang=confirm(`Yakin mau tambah barang ?`)
+    if(konfirmasitambahbarang){
+        var tambahbarangnama=prompt('Nama barang yang ingin di tambah')
+        var tambahbarangharga=parseInt(prompt('Nama barang yang ingin di tambah'))
+        var tambahbaranggambar=parseInt(prompt('Link gambar barang baru'))
+        dataBarang.push(new Barang(tambahbarangnama,tambahbarangharga,tambahbaranggambar))
+        printBelanjaAdmin(dataBarang)
+    }
+}
+
 
 const onClickDelete=(a)=>{
     console.log(dataUser[a].username)
@@ -306,5 +326,5 @@ const onClickDeleteAdmin=(a)=>{
 
 // printData(dataUser)
 // printBelanjaAdmin(dataBarang)
-// document.getElementsByTagName('h4')[0].innerHTML= `<button onclick="">Add</button>`
-// document.getElementsByTagName('h4')[1].innerHTML= `<button onclick="">Add</button>`
+// document.getElementsByTagName('h4')[0].innerHTML= `<button onclick="onClickAddBarang">Add</button>`
+// document.getElementsByTagName('h4')[1].innerHTML= `<button onclick="onClickAddBarang">Add</button>`
